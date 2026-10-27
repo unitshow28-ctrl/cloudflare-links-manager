@@ -53,7 +53,8 @@ Voici les emplacements prévus pour présenter l'application en images. Remplace
 
 <div align="center">
 
-<!-- Remplacer par une capture du tableau de bord -->
+<img width="1698" height="904" alt="image" src="https://github.com/user-attachments/assets/3bd91c19-c6fd-4316-aed6-df47a97b8485" />
+
 
 ![Tableau de bord](screenshots/dashboard.png)
 
@@ -65,7 +66,8 @@ Voici les emplacements prévus pour présenter l'application en images. Remplace
 
 <div align="center">
 
-<!-- Remplacer par une capture de la gestion des liens -->
+<img width="1691" height="904" alt="image" src="https://github.com/user-attachments/assets/f01f8fb6-eb27-4ea9-b6ad-d20d8cb7b35f" />
+
 
 ![Gestion des liens](screenshots/liens.png)
 
@@ -77,7 +79,8 @@ Voici les emplacements prévus pour présenter l'application en images. Remplace
 
 <div align="center">
 
-<!-- Remplacer par une capture de la gestion des utilisateurs -->
+<img width="1663" height="915" alt="image" src="https://github.com/user-attachments/assets/257daf64-b264-4599-990a-4e8ceda8d69c" />
+
 
 ![Gestion des utilisateurs](screenshots/utilisateurs.png)
 
