@@ -1,6 +1,6 @@
 <div align="center">
 
-# Cloudflare Links Manager
+# Cloudflare Links Manager by Bertrand
 
 ### Tous vos liens. Un seul endroit.
 
