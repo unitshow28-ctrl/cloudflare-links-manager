@@ -1,446 +1,313 @@
 <div align="center">
 
-# 🔗 Cloudflare Links Manager
+# Cloudflare Links Manager
 
-### ✨ Toutes tes redirections au même endroit.
+**Un petit gestionnaire de redirections pour centraliser les liens de ses services.**
 
-<p>
-  Un gestionnaire de liens léger, personnalisable et hébergé sur Cloudflare.
-  <br>
-  Crée des URL courtes, gère les accès et partage tes services facilement.
-</p>
+Une application hébergée sur Cloudflare pour créer des liens courts, gérer les accès et retrouver facilement ses services.
 
-<p>
-  <img src="https://img.shields.io/badge/Cloudflare-Pages-orange?logo=cloudflare" alt="Cloudflare Pages">
-  <img src="https://img.shields.io/badge/Cloudflare-Workers%20KV-orange?logo=cloudflare" alt="Cloudflare Workers KV">
-  <img src="https://img.shields.io/badge/Interface-Fran%C3%A7ais-blue" alt="Interface française">
-  <img src="https://img.shields.io/badge/Co%C3%BBt-Plan%20gratuit%20possible-brightgreen" alt="Plan gratuit possible">
-</p>
+<br>
+
+![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-orange?logo=cloudflare)
+![Workers KV](https://img.shields.io/badge/Cloudflare-Workers%20KV-orange?logo=cloudflare)
+![Langue](https://img.shields.io/badge/interface-fran%C3%A7aise-blue)
 
 </div>
 
 ---
 
-## 📖 Sommaire
+## Présentation
 
-- [👋 Présentation](#-présentation)
-- [✨ Fonctionnalités](#-fonctionnalités)
-- [🖥️ Exemples d'utilisation](#️-exemples-dutilisation)
-- [⚙️ Prérequis](#️-prérequis)
-- [🚀 Installation pas à pas](#-installation-pas-à-pas)
-- [🔐 Configuration et sécurité](#-configuration-et-sécurité)
-- [📊 Limites de Cloudflare KV](#-limites-de-cloudflare-kv)
-- [🧯 Dépannage](#-dépannage)
-- [🗂️ Organisation des données](#️-organisation-des-données)
-- [💡 Conseils](#-conseils)
-- [📚 Documentation officielle](#-documentation-officielle)
+J'ai créé ce projet pour avoir un endroit unique où gérer mes redirections, sans devoir retenir ou partager les adresses complètes de tous mes services.
+
+Le principe est assez simple : je crée un lien court, je lui associe une destination et je peux ensuite partager ce lien. Tout se gère depuis une interface web, sans avoir à modifier le code à chaque changement de destination.
+
+Par exemple, plutôt que de partager directement l'adresse de mon Nextcloud, je peux utiliser une adresse comme `liens.mondomaine.fr/nextcloud`.
+
+Le projet fonctionne avec Cloudflare Pages, Workers et KV. Il est pensé pour rester relativement léger et peut être utilisé avec l'offre gratuite de Cloudflare, à condition de respecter les quotas.
+
+Au fil du temps, le projet a également intégré d'autres fonctionnalités pour faciliter son utilisation à plusieurs : gestion des comptes, permissions, personnalisation de l'interface et statistiques.
+
+## Ce que propose le projet
+
+### Gestion des liens
+
+- Création de redirections avec un nom personnalisé.
+- Modification et suppression des liens.
+- Choix d'une destination externe en HTTP ou HTTPS.
+- Dates de début et d'expiration pour les liens temporaires.
+- Protection par mot de passe pour certains liens.
+- Publication de petites pages de texte accessibles par une URL courte.
+
+### Utilisateurs et permissions
+
+L'application peut être utilisée par plusieurs personnes, avec des droits différents selon les besoins.
+
+Elle comprend notamment :
+
+- La création et la gestion des comptes.
+- La désactivation des utilisateurs.
+- La gestion des permissions.
+- Plusieurs groupes de droits prédéfinis.
+- La possibilité de créer des groupes personnalisés.
+- La gestion du profil et du mot de passe.
+- La possibilité de limiter la durée de validité de certains comptes.
+
+L'objectif est de pouvoir partager l'administration sans nécessairement donner tous les droits à tout le monde.
+
+### Personnalisation
+
+L'interface peut être adaptée depuis l'administration, notamment pour le nom du site, les textes de présentation, le logo et l'apparence.
+
+Un thème clair ou sombre est également disponible.
+
+### Statistiques
+
+Un espace d'analyse permet de consulter les informations d'utilisation enregistrées par l'application.
+
+Son accès dépend des permissions attribuées au compte.
+
+### Fichiers
+
+Le code prévoit également une intégration optionnelle avec Cloudflare R2 pour le stockage de fichiers PDF.
+
+Cette partie nécessite une configuration supplémentaire et n'est pas indispensable pour utiliser les redirections classiques.
 
 ---
 
-## 👋 Présentation
+## Quelques exemples
 
-**Cloudflare Links Manager** est une application web conçue pour centraliser la gestion de redirections URL.
+Voici quelques idées d'utilisation :
 
-Tu héberges plusieurs services, tu as des liens difficiles à retenir ou tu souhaites partager des adresses sans dévoiler leurs URL complètes ? Cette application te permet de créer des liens courts, faciles à utiliser et administrables depuis une interface web.
-
-Par exemple, au lieu de partager une longue adresse, tu peux utiliser :
-
-| Lien court | Destination |
+| Adresse courte | Destination |
 |---|---|
-| `liens.mondomaine.fr/nextcloud` | Ton instance Nextcloud |
-| `liens.mondomaine.fr/photos` | Ta galerie photo |
-| `liens.mondomaine.fr/docs` | Tes documents |
-| `liens.mondomaine.fr/projet` | Un site ou projet particulier |
+| `liens.mondomaine.fr/nextcloud` | Mon Nextcloud |
+| `liens.mondomaine.fr/photos` | Ma galerie photo |
+| `liens.mondomaine.fr/docs` | Ma documentation |
+| `liens.mondomaine.fr/projet` | Un site temporaire |
 
-Les exemples ci-dessus sont fictifs : les destinations dépendent de ta propre configuration.
-
-L'application s'appuie sur les services Cloudflare pour exécuter le code et stocker les informations nécessaires.
-
-### 🎯 L'objectif
-
-- Une interface centralisée pour gérer tes liens.
-- Une administration avec plusieurs utilisateurs et différents niveaux de droits.
-- Des redirections configurables.
-- Des options de personnalisation.
-- Des statistiques pour suivre l'utilisation des liens.
-- Une infrastructure pouvant fonctionner dans les limites du forfait gratuit de Cloudflare.
-
-> 💡 **Important :** le forfait gratuit n'est pas illimité. Les quotas de stockage et d'exécution doivent être pris en compte, notamment lorsque tu modifies souvent tes redirections ou tes paramètres.
+Ce sont simplement des exemples : chacun peut organiser ses liens comme il le souhaite.
 
 ---
 
-## ✨ Fonctionnalités
+## Installation
 
-### 🔗 Gestion des redirections
+L'application utilise Cloudflare Pages pour l'hébergement, un Worker pour exécuter le code et KV pour stocker les données.
 
-L'application permet de créer et de gérer des liens courts.
+Il faut disposer d'un compte Cloudflare et avoir accès aux paramètres du projet.
 
-Selon les options disponibles dans l'interface, tu peux notamment :
+### 1. Déployer le projet
 
-- Définir un nom personnalisé pour chaque lien.
-- Choisir une destination externe.
-- Modifier une redirection existante.
-- Supprimer une redirection.
-- Configurer une période de disponibilité.
-- Définir une date de début et une date d'expiration.
-- Protéger certains liens par un mot de passe.
-- Copier rapidement une adresse pour la partager.
+Récupérez le fichier `_worker.js` présent dans le dépôt.
 
-### 📝 Pages de texte
+Créez ensuite un projet Cloudflare Pages ou utilisez un projet existant. Le code est prévu pour le mode avancé des Workers pour Pages : il doit être exécuté comme un Worker et non simplement servi comme un fichier statique.
 
-Le projet comprend également une fonctionnalité de publication de contenu texte enrichi.
+Suivez la documentation officielle si vous découvrez Pages :
 
-Elle permet de créer une petite page accessible depuis une URL courte, sans devoir héberger un site séparé.
+[Documentation Cloudflare Pages](https://developers.cloudflare.com/pages/)
 
-### 👥 Gestion des utilisateurs
+### 2. Créer un espace de stockage KV
 
-L'administration prend en charge plusieurs comptes.
+Dans le tableau de bord Cloudflare :
 
-Les fonctionnalités comprennent notamment :
+1. Ouvrez la section Workers & Pages.
+2. Accédez à KV.
+3. Créez un namespace.
 
-- La création et la modification des utilisateurs.
-- La désactivation de comptes.
-- La gestion des droits d'accès.
-- La limitation de la période de validité de certains comptes.
-- La gestion du profil.
-- Le changement de mot de passe.
-- La demande de changement de mot de passe à la première connexion.
+Vous pouvez lui donner le nom que vous voulez. Par exemple : `liens-database`.
 
-### 🛡️ Permissions et groupes
+### 3. Ajouter le binding
 
-Les droits permettent de contrôler les actions accessibles à chaque utilisateur.
+Dans les paramètres de votre projet Pages, ajoutez un binding de type KV namespace.
 
-Les groupes prédéfinis comprennent :
+Configurez-le ainsi :
 
-- **Super-Admin** : administration complète.
-- **Utilisateur Standard** : utilisation courante selon les permissions attribuées.
-- **Lecteur** : consultation des éléments autorisés.
-- **Utilisateur Restreint** : accès limité.
-- **Personnalisé** : groupe adapté à des besoins particuliers.
-
-Les permissions peuvent notamment contrôler la consultation, la création, la modification et la suppression des liens, ainsi que la gestion des utilisateurs et l'accès aux statistiques.
-
-### 📊 Statistiques
-
-Le centre d'analyse permet de consulter les informations d'utilisation enregistrées par l'application.
-
-L'accès dépend des permissions du compte.
-
-### 🎨 Personnalisation
-
-L'interface propose des options de personnalisation, notamment :
-
-- Le nom du site.
-- Les textes de présentation.
-- Le logo.
-- L'apparence.
-- Le thème clair ou sombre.
-- Certaines préférences individuelles.
-
-### 📄 Stockage de fichiers
-
-Le code prévoit également un binding R2 optionnel nommé `CONTENT_FILES`, destiné aux anciens fichiers PDF hébergés.
-
-Cette fonctionnalité nécessite une configuration R2 appropriée et n'est pas indispensable au fonctionnement des redirections externes.
-
----
-
-## 🖥️ Exemples d'utilisation
-
-Voici quelques idées pour exploiter le gestionnaire :
-
-| Usage | Exemple de lien |
+| Paramètre | Valeur |
 |---|---|
-| Cloud personnel | `liens.mondomaine.fr/cloud` |
-| Galerie photo | `liens.mondomaine.fr/photos` |
-| Documentation | `liens.mondomaine.fr/docs` |
-| Projet temporaire | `liens.mondomaine.fr/projet` |
-| Page d'information | `liens.mondomaine.fr/infos` |
+| Nom du binding | `LINKS` |
+| Namespace associé | Celui créé à l'étape précédente |
 
-Tu peux utiliser ton propre domaine ou un sous-domaine associé à Cloudflare Pages.
+Le nom `LINKS` est important : le code s'appuie sur ce nom pour accéder aux données.
 
-Les liens sont des exemples : ils ne seront accessibles qu'une fois le domaine configuré et les redirections créées.
+### 4. Ajouter les secrets
 
----
+Dans les paramètres du projet, ouvrez la section des variables et secrets.
 
-## ⚙️ Prérequis
+Ajoutez les deux secrets suivants :
 
-Avant de commencer, assure-toi de disposer des éléments suivants :
-
-- Un compte Cloudflare.
-- Un projet Cloudflare Pages configuré pour exécuter le Worker fourni.
-- Un namespace Cloudflare Workers KV.
-- Un navigateur web récent.
-- Un mot de passe d'administration.
-- Un secret de session aléatoire.
-
-Un nom de domaine personnalisé est facultatif, mais recommandé pour obtenir des liens faciles à retenir.
-
-### 🧰 Les services utilisés
-
-| Service | Rôle |
+| Nom | Utilité |
 |---|---|
-| Cloudflare Pages | Hébergement du projet |
-| Cloudflare Workers | Exécution du code côté serveur |
-| Cloudflare Workers KV | Stockage des redirections et des paramètres |
-| Cloudflare R2 | Stockage de fichiers optionnel |
+| `ADMIN_PASSWORD` | Mot de passe d'administration |
+| `SESSION_SECRET` | Secret utilisé pour signer les sessions |
 
----
+Choisissez un mot de passe robuste et utilisez une valeur aléatoire suffisamment longue pour `SESSION_SECRET`.
 
-## 🚀 Installation pas à pas
+Ces valeurs doivent rester privées. Ne les ajoutez jamais au code source ni au README de votre dépôt.
 
-Pas besoin d'être développeur pour suivre ce guide. Il suffit de prendre le temps de vérifier chaque réglage.
+### 5. Configurer le compte propriétaire
 
-### Étape 1 — Récupérer le projet
-
-Télécharge le fichier `_worker.js` fourni dans le dépôt.
-
-Il contient le code de l'application.
-
-Le projet utilise le mode avancé des Workers pour Pages : il ne suffit donc pas de déposer le fichier comme une simple page HTML statique.
-
-### Étape 2 — Créer un projet Cloudflare Pages
-
-1. Connecte-toi au [tableau de bord Cloudflare](https://dash.cloudflare.com/).
-2. Ouvre **Workers & Pages**.
-3. Crée un projet Pages ou sélectionne un projet existant.
-4. Configure le déploiement pour utiliser le Worker fourni.
-5. Déploie le projet selon le mode de déploiement choisi.
-
-Tu peux commencer avec le domaine attribué par Cloudflare, puis configurer un domaine personnalisé ultérieurement.
-
-📚 Documentation : [Cloudflare Pages](https://developers.cloudflare.com/pages/)
-
-### Étape 3 — Créer le stockage KV
-
-Cloudflare KV sert à conserver les informations de l'application.
-
-1. Dans le tableau de bord, ouvre la section **Workers & Pages**, puis **KV**.
-2. Crée un namespace.
-3. Donne-lui un nom explicite, par exemple `liens-database`.
-4. Enregistre le namespace.
-
-Le nom du namespace est libre. C'est le nom du **binding** qui doit respecter exactement la configuration attendue par le code.
-
-### Étape 4 — Ajouter le binding `LINKS`
-
-Retourne dans les paramètres de ton projet.
-
-1. Ouvre les paramètres du projet.
-2. Accède à la section des bindings.
-3. Ajoute un binding de type **KV namespace**.
-4. Renseigne le nom de variable suivant :
-
-`LINKS`
-
-5. Sélectionne le namespace créé à l'étape précédente.
-6. Enregistre.
-
-⚠️ Attention : `LINKS` doit être écrit exactement ainsi, en majuscules.
-
-Si tu nommes le binding `links`, `KV` ou `DATABASE`, le code ne trouvera pas le stockage attendu.
-
-📚 Documentation : [Configurer un binding KV](https://developers.cloudflare.com/kv/get-started/)
-
-### Étape 5 — Configurer les secrets
-
-Le projet utilise deux secrets obligatoires.
-
-Dans les paramètres de ton projet, ouvre la section **Variables and Secrets**.
-
-Ajoute les valeurs suivantes :
-
-| Nom | Type | Rôle |
-|---|---|---|
-| `ADMIN_PASSWORD` | Secret | Mot de passe d'administration |
-| `SESSION_SECRET` | Secret | Signature des sessions |
-
-#### `ADMIN_PASSWORD`
-
-Choisis un mot de passe long et difficile à deviner.
-
-Évite les mots de passe déjà utilisés sur d'autres sites.
-
-#### `SESSION_SECRET`
-
-Ce secret est utilisé pour sécuriser les sessions d'administration.
-
-Il doit être aléatoire, suffisamment long et différent du mot de passe.
-
-Ne publie jamais ces deux valeurs dans ton dépôt GitHub.
-
-### Étape 6 — Configurer l'identifiant administrateur
-
-Le projet prend en charge une variable facultative :
+Une variable facultative permet de définir l'identifiant du propriétaire :
 
 `ADMIN_USER`
 
-Elle définit l'identifiant du compte propriétaire.
+Si elle n'est pas renseignée, l'application utilise `bertrand` par défaut.
 
-Si cette variable n'est pas définie, le code utilise par défaut :
+Vous pouvez définir votre propre identifiant dans les paramètres Cloudflare.
 
-`bertrand`
+### 6. Configurer R2 si nécessaire
 
-Tu peux donc définir ton propre identifiant si tu préfères ne pas conserver cette valeur par défaut.
+Si vous souhaitez utiliser le stockage de fichiers PDF prévu par le projet, créez un bucket Cloudflare R2 et ajoutez un binding nommé `CONTENT_FILES`.
 
-Respecte le format accepté par l'application : lettres minuscules, chiffres, tirets et tirets bas, en commençant par une lettre ou un chiffre.
+Cette étape est facultative pour les redirections classiques.
 
-### Étape 7 — Ajouter R2 si nécessaire
+[Documentation Cloudflare R2](https://developers.cloudflare.com/r2/)
 
-Cette étape est facultative.
+### 7. Déployer et se connecter
 
-Si tu souhaites utiliser la fonctionnalité de stockage de fichiers PDF prévue par le projet :
+Vérifiez les bindings et les secrets, puis déployez le projet.
 
-1. Crée un bucket Cloudflare R2.
-2. Retourne dans les paramètres de ton projet.
-3. Ajoute un binding R2.
-4. Nomme-le exactement `CONTENT_FILES`.
-5. Sélectionne le bucket correspondant.
+Une fois le déploiement terminé, ouvrez votre domaine et accédez à l'administration pour vous connecter et créer vos premières redirections.
 
-Pour les redirections externes classiques, cette configuration n'est pas nécessaire.
-
-📚 Documentation : [Cloudflare R2](https://developers.cloudflare.com/r2/)
-
-### Étape 8 — Déployer le projet
-
-Une fois les bindings et les secrets configurés :
-
-1. Vérifie que tous les noms sont corrects.
-2. Enregistre les paramètres.
-3. Lance un nouveau déploiement si nécessaire.
-4. Attends que Cloudflare indique que le déploiement est terminé.
-5. Ouvre le domaine de ton application.
-
-Si tu utilises des environnements Production et Preview, vérifie que les bindings et secrets sont configurés dans l'environnement que tu souhaites utiliser.
-
-### Étape 9 — Se connecter à l'administration
-
-Ouvre l'adresse de ton application, puis accède à la page d'administration.
-
-Connecte-toi avec l'identifiant propriétaire et le mot de passe configuré.
-
-Tu pourras ensuite créer tes premières redirections et gérer les utilisateurs selon les permissions disponibles.
-
-🎉 **Félicitations !** Ton gestionnaire est prêt à être configuré.
+Si vous utilisez plusieurs environnements, vérifiez que les bindings et les secrets sont bien configurés dans celui où vous souhaitez exécuter l'application.
 
 ---
 
-## 🔐 Configuration et sécurité
+## Cloudflare KV : ce qu'il faut savoir
 
-Quelques règles simples permettent d'éviter les mauvaises surprises.
+Le projet utilise KV pour conserver les redirections, les comptes et différents paramètres.
 
-### Protéger les secrets
+C'est pratique pour ce type d'application, mais il faut garder en tête que le service possède des quotas.
 
-Ne partage jamais publiquement :
+Sur l'offre gratuite de Workers, les limites documentées sont les suivantes :
 
-- `ADMIN_PASSWORD`
-- `SESSION_SECRET`
-
-Ne les écris pas dans le README, dans le code source ou dans une capture d'écran publique.
-
-### Utiliser HTTPS
-
-Utilise HTTPS pour accéder à l'administration et partager les liens.
-
-Si tu relies un domaine personnalisé à Cloudflare, vérifie sa configuration DNS et son certificat TLS.
-
-### Limiter les permissions
-
-N'accorde pas les droits d'administration à tous les utilisateurs.
-
-Attribue uniquement les permissions nécessaires à chaque compte.
-
-### Comprendre les liens protégés
-
-Un lien protégé par mot de passe ajoute une barrière d'accès, mais ne remplace pas un système d'authentification complet pour des données sensibles.
-
-Évite de partager publiquement des informations confidentielles.
-
-### Sauvegarder les données
-
-Les informations sont conservées dans KV. Pour les données importantes, prévois une stratégie de sauvegarde adaptée.
-
-Ne supprime pas manuellement des clés KV sans comprendre leur rôle.
-
----
-
-## 📊 Limites de Cloudflare KV
-
-Cloudflare Workers KV est pratique pour ce type d'application, mais il possède des quotas.
-
-Sur l'offre gratuite Workers, les limites documentées sont les suivantes :
-
-| Opération | Quota gratuit |
+| Opération | Quota journalier |
 |---|---:|
-| Lectures | 100 000 par jour |
-| Écritures | 1 000 par jour |
-| Suppressions | 1 000 par jour |
-| Opérations de liste | 1 000 par jour |
+| Lectures | 100 000 |
+| Écritures | 1 000 |
+| Suppressions | 1 000 |
+| Opérations de liste | 1 000 |
 | Stockage | 1 Go |
 
-Ces quotas sont réinitialisés chaque jour à **00:00 UTC**. Si un quota est dépassé, les opérations correspondantes peuvent échouer jusqu'à sa réinitialisation.
+Les quotas journaliers sont réinitialisés à 00:00 UTC.
 
-📚 Références officielles :
+Les limites et les tarifs pouvant évoluer, consultez la documentation officielle avant de prendre une décision concernant votre hébergement :
+
 - [Tarification de Workers KV](https://developers.cloudflare.com/kv/platform/pricing/)
 - [Limites de Workers KV](https://developers.cloudflare.com/kv/platform/limits/)
 
-### 🧠 Qu'est-ce qu'une lecture ?
+### Pourquoi est-ce important ?
 
-Une lecture correspond à une opération qui récupère une valeur depuis KV.
+Les lectures servent notamment à récupérer des informations stockées dans KV. Les écritures servent à enregistrer ou modifier des données.
 
-Par exemple, l'application peut devoir lire les informations d'une redirection ou les paramètres d'un compte.
+Dans le cas de cette application, les créations et modifications de liens, les changements de paramètres ou certaines opérations sur les comptes peuvent consommer des écritures.
 
-Les consultations du site peuvent donc contribuer au quota de lectures, selon le fonctionnement du code.
+Une seule action dans l'interface peut déclencher plusieurs opérations. Il ne faut donc pas considérer qu'un clic correspond systématiquement à une écriture.
 
-### ✏️ Qu'est-ce qu'une écriture ?
+Si le quota d'écritures est atteint, les modifications qui nécessitent un enregistrement peuvent échouer jusqu'à la remise à zéro du quota.
 
-Une écriture correspond à l'enregistrement d'une valeur dans KV.
+Cela peut notamment arriver lorsqu'on effectue beaucoup de modifications pendant les tests ou lors de la configuration initiale.
 
-Par exemple :
+### Comment limiter la consommation ?
 
-- Créer une redirection.
-- Modifier une redirection.
-- Enregistrer certains paramètres.
-- Modifier des informations de compte.
-- Enregistrer des données de suivi.
+Quelques habitudes peuvent aider :
 
-Une action dans l'interface peut entraîner plusieurs opérations KV. Il ne faut donc pas supposer qu'un clic correspond toujours à une seule écriture.
+- Éviter de sauvegarder plusieurs fois les mêmes paramètres.
+- Limiter les modifications répétées pendant les tests.
+- Consulter les métriques KV dans le tableau de bord Cloudflare.
+- Vérifier les logs du Worker lorsqu'une opération échoue.
 
-### 🗑️ Qu'est-ce qu'une suppression ?
+KV est particulièrement intéressant lorsque les données sont souvent consultées et moins souvent modifiées.
 
-Une suppression est une opération qui retire une clé de KV.
+Si votre utilisation nécessite beaucoup d'écritures quotidiennes, il peut être utile d'étudier une autre offre ou une solution de stockage mieux adaptée.
 
-La suppression d'un lien ou d'une autre donnée peut consommer ce quota.
+---
 
-### 📋 Qu'est-ce qu'une opération de liste ?
+## Sécurité
 
-Une opération de liste sert à parcourir les clés d'un namespace.
+Quelques précautions sont importantes, même pour un petit projet personnel.
 
-Elle peut être utilisée pour rechercher les données présentes dans le stockage.
+- Gardez les secrets Cloudflare privés.
+- Utilisez HTTPS pour accéder à l'administration.
+- Attribuez uniquement les permissions nécessaires à chaque utilisateur.
+- Désactivez les comptes qui ne doivent plus avoir accès à l'application.
+- Prévoyez une sauvegarde des données importantes.
 
-### ⚠️ Que se passe-t-il si le quota est dépassé ?
+Une URL difficile à deviner ne constitue pas une véritable protection. Pour les liens sensibles, utilisez les protections prévues par l'application et évitez d'y partager des informations confidentielles.
 
-Si tu dépasses le quota d'écritures, les modifications qui nécessitent une écriture peuvent échouer.
+---
 
-Tu peux alors constater :
+## Dépannage
 
-- Une redirection qui ne se sauvegarde pas.
-- Une modification de compte qui échoue.
-- Une erreur renvoyée par le Worker.
-- Une erreur Cloudflare 1101 si une exception n'est pas correctement gérée par le code.
+### L'application indique que la configuration est incomplète
 
-Une erreur 1101 n'indique pas systématiquement un quota dépassé. Il faut consulter les logs du Worker pour confirmer la cause.
+Vérifiez la présence du binding `LINKS` et des secrets `ADMIN_PASSWORD` et `SESSION_SECRET`.
 
-### 🕛 Quand les quotas sont-ils réinitialisés ?
+Vérifiez également qu'ils sont configurés dans le bon environnement Cloudflare.
 
-Les quotas gratuits sont réinitialisés à minuit UTC, et non nécessairement à minuit selon ton heure locale.
+### Je ne peux pas enregistrer une redirection
 
-Après la réinitialisation, les opérations peuvent de nouveau fonctionner si le quota concerné était la cause du problème.
+Commencez par vérifier le binding KV, les permissions de votre compte et le quota d'écritures.
 
-### 💳 Et avec une offre payante ?
+Si tout semble correct, consultez les logs du Worker pour obtenir le détail de l'erreur.
 
-L'offre payante utilise une tarification différente, avec des allocations mensuelles et des coûts supplémentaires selon l'utilisation.
+### J'obtiens une erreur 1101
 
-Les prix et allocations peuvent évoluer. Consulte toujours la [tarification officielle de Workers KV](https://developers.cloudflare.com/kv/platform/pricing/) avant de changer d'offre.
+Cette erreur indique généralement qu'une exception s'est produite pendant l'exécution du Worker.
 
-### 💡 Comment éviter de consommer trop d
+Un quota KV dépassé peut être à l'origine d'un échec, mais ce n'est pas la seule possibilité. Les logs permettent de distinguer un problème de quota d'une erreur de configuration ou de code.
+
+### Une redirection ne fonctionne pas
+
+Vérifiez que le lien existe, que l'adresse de destination est valide et que les éventuelles dates de disponibilité sont correctes.
+
+Si le lien est protégé par mot de passe, vérifiez également ce paramètre.
+
+### La connexion à l'administration échoue
+
+Vérifiez l'identifiant propriétaire, le mot de passe et la présence de `SESSION_SECRET`.
+
+Si vous venez de modifier les paramètres Cloudflare, vérifiez que le déploiement utilise bien la nouvelle configuration.
+
+---
+
+## Organisation des données
+
+Le code utilise plusieurs préfixes KV pour organiser les informations.
+
+| Préfixe ou clé | Utilisation |
+|---|---|
+| `l:` | Métadonnées des redirections |
+| `t:` | Contenu des pages de texte |
+| `u:` | Comptes utilisateurs |
+| `g:` | Groupes de permissions |
+| `settings:brand` | Personnalisation du site |
+| `profile:owner` | Profil du propriétaire |
+| `an:` | Événements d'analyse |
+| `rl:` | Compteurs temporaires de tentatives de connexion |
+
+Cette liste est indicative. Évitez de modifier ou de supprimer manuellement des clés KV sans connaître leur rôle.
+
+---
+
+## Documentation utile
+
+- [Cloudflare Pages](https://developers.cloudflare.com/pages/)
+- [Cloudflare Workers](https://developers.cloudflare.com/workers/)
+- [Cloudflare Workers KV](https://developers.cloudflare.com/kv/)
+- [Tarification KV](https://developers.cloudflare.com/kv/platform/pricing/)
+- [Limites KV](https://developers.cloudflare.com/kv/platform/limits/)
+- [Cloudflare R2](https://developers.cloudflare.com/r2/)
+
+---
+
+## Pour finir
+
+Ce projet est avant tout un outil pratique pour centraliser ses redirections et simplifier l'accès à ses services.
+
+Il évolue en fonction des besoins, et l'objectif reste de garder une administration simple à utiliser sans multiplier les services à maintenir.
+
+Si vous l'utilisez ou si vous repérez un problème, n'hésitez pas à ouvrir une issue sur le dépôt.
+
+Merci d'avoir pris le temps de découvrir le projet.
+
+</writing>
