@@ -2,186 +2,232 @@
 
 # Cloudflare Links Manager
 
-### Vos liens. Votre domaine. Votre infrastructure.
+### Tous vos liens. Un seul endroit.
 
-Une application de gestion de liens et de redirections hébergée sur Cloudflare, conçue pour centraliser vos URL, simplifier leur gestion et garder le contrôle sur votre propre infrastructure.
+Une application pour créer, organiser et gérer vos redirections depuis votre propre domaine, avec Cloudflare.
 
 <br>
 
-![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
+[![Cloudflare](https://img.shields.io/badge/Powered_by-Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://www.cloudflare.com/)
 ![Workers KV](https://img.shields.io/badge/Storage-Workers_KV-2563EB?style=for-the-badge)
-![Interface](https://img.shields.io/badge/Interface-Fran%C3%A7aise-16A34A?style=for-the-badge)
+![Language](https://img.shields.io/badge/Interface-Fran%C3%A7aise-16A34A?style=for-the-badge)
 
-**Simple à déployer · Agréable à utiliser · Pensé pour durer**
+<br>
+
+**Une interface centralisée. Des liens personnalisés. Votre infrastructure.**
+
+<br>
+
+[ Télécharger le projet ](#installation) · [ Captures d'écran ](#aperçu) · [ Documentation ](#documentation)
 
 </div>
 
 ---
 
-## Présentation
+## À propos
 
-Cloudflare Links Manager permet de créer et de gérer ses propres liens courts et redirections depuis une interface d'administration.
+Cloudflare Links Manager permet de créer et de gérer facilement des redirections personnalisées depuis une interface d'administration.
 
-L'idée est simple : au lieu de partager des URL interminables, vous utilisez votre domaine pour créer des adresses courtes, personnalisées et faciles à retenir.
+Plutôt que de partager des adresses longues et difficiles à retenir, vous pouvez utiliser votre propre domaine pour créer des liens simples.
 
 Par exemple :
 
-| Votre lien | Destination |
+| Lien personnalisé | Destination |
 |---|---|
-| `liens.mondomaine.fr/nextcloud` | `cloud.mondomaine.fr` |
-| `liens.mondomaine.fr/docs` | Une documentation en ligne |
-| `liens.mondomaine.fr/contact` | Une page de contact |
-| `liens.mondomaine.fr/mon-projet` | Le site de votre projet |
+| `liens.mondomaine.fr/nextcloud` | Votre espace Nextcloud |
+| `liens.mondomaine.fr/docs` | Votre documentation |
+| `liens.mondomaine.fr/contact` | Votre page de contact |
+| `liens.mondomaine.fr/projet` | Votre site ou application |
 
-Vous gardez la maîtrise de vos liens. Si une destination change, il suffit de modifier la redirection dans l'administration : pas besoin de communiquer une nouvelle adresse à tout le monde.
+Et si une destination change ? Vous modifiez simplement le lien depuis l'administration, sans avoir à diffuser une nouvelle adresse.
 
-Le projet s'appuie sur les services Cloudflare pour fonctionner sans avoir à gérer un serveur traditionnel.
+Le projet s'appuie sur les services Cloudflare et est distribué sous la forme d'une archive ZIP contenant les fichiers nécessaires au déploiement.
 
-## Fonctionnalités
+## Aperçu
+
+Voici les emplacements prévus pour présenter l'application en images. Remplacez les chemins des images par les noms de vos propres captures.
+
+### Tableau de bord
+
+*Une vue d'ensemble de l'application.*
+
+<div align="center">
+
+<!-- Remplacer par une capture du tableau de bord -->
+
+![Tableau de bord](screenshots/dashboard.png)
+
+</div>
 
 ### Gestion des liens
 
-Créez des redirections adaptées à vos besoins et gérez-les depuis une interface centralisée.
+*Retrouvez vos redirections et gérez vos liens depuis une interface unique.*
 
-- Création de liens personnalisés.
-- Modification et suppression des redirections.
-- Prise en charge des destinations HTTP et HTTPS.
-- Gestion de dates de début et de fin de disponibilité.
-- Protection de certains liens par mot de passe.
-- Création de pages contenant un court texte.
+<div align="center">
+
+<!-- Remplacer par une capture de la gestion des liens -->
+
+![Gestion des liens](screenshots/liens.png)
+
+</div>
 
 ### Utilisateurs et permissions
 
-L'application propose des fonctions d'administration pour organiser l'accès à votre espace.
+*Gérez les comptes et les accès selon les fonctionnalités disponibles dans votre installation.*
 
-- Gestion des comptes utilisateurs.
-- Attribution de rôles et organisation en groupes.
-- Activation et désactivation des comptes.
-- Gestion des profils et des mots de passe.
-- Possibilité de définir une date d'expiration pour certains comptes.
+<div align="center">
+
+<!-- Remplacer par une capture de la gestion des utilisateurs -->
+
+![Gestion des utilisateurs](screenshots/utilisateurs.png)
+
+</div>
 
 ### Personnalisation
 
-Adaptez l'interface à votre environnement plutôt que l'inverse.
+*Adaptez l'interface à vos préférences.*
 
-- Personnalisation du nom du site.
-- Modification des textes et du logo.
-- Réglages d'apparence.
-- Prise en charge des thèmes clair et sombre.
+<div align="center">
 
-### Statistiques
+<!-- Remplacer par une capture des paramètres -->
 
-Consultez les informations de fréquentation disponibles dans l'application pour mieux comprendre l'utilisation de vos liens.
+![Paramètres de l'application](screenshots/parametres.png)
 
-### Stockage de fichiers avec R2
+</div>
 
-Une configuration compatible avec Cloudflare R2 peut également être utilisée pour le stockage de fichiers, notamment des PDF, si cette fonctionnalité est activée et correctement configurée.
+> **Ajouter les captures :** créez un dossier `screenshots` à la racine de votre dépôt GitHub et placez-y vos images avec les noms indiqués ci-dessus. Vous pouvez aussi modifier les chemins dans ce README pour utiliser vos propres noms de fichiers.
 
 ---
 
-## Architecture
+## Fonctionnalités
 
-Le projet repose sur les services suivants :
+### Liens et redirections
 
-| Service | Rôle |
-|---|---|
-| **Cloudflare Pages** | Hébergement et déploiement de l'application |
-| **Cloudflare Workers** | Exécution du code côté serveur |
-| **Cloudflare Workers KV** | Stockage des données de l'application |
-| **Cloudflare R2** | Stockage de fichiers optionnel |
+- Création de liens avec des adresses personnalisées.
+- Modification et suppression des liens.
+- Redirections vers des destinations HTTP ou HTTPS.
+- Gestion de dates de début et de fin de disponibilité.
+- Protection de certains liens par mot de passe.
+- Création de pages contenant un texte court.
 
-L'objectif est de disposer d'une application accessible depuis votre domaine, sans devoir administrer un serveur Linux ni maintenir une base de données traditionnelle.
+### Utilisateurs
 
-Les quotas et conditions d'utilisation dépendent de votre offre Cloudflare.
+- Gestion des comptes.
+- Organisation des utilisateurs en groupes et attribution de rôles, selon les fonctions disponibles.
+- Activation et désactivation des comptes.
+- Gestion des profils et des mots de passe.
+- Gestion éventuelle de la date d'expiration des comptes.
+
+### Personnalisation
+
+- Modification du nom du site.
+- Personnalisation des textes et du logo.
+- Réglages de l'apparence.
+- Thèmes clair et sombre.
+
+### Statistiques et fichiers
+
+- Consultation des statistiques disponibles dans l'application.
+- Possibilité d'utiliser Cloudflare R2 pour le stockage de fichiers, si cette fonctionnalité est configurée.
+
+Les fonctionnalités réellement disponibles dépendent de la version du code fournie dans l'archive.
 
 ---
 
 ## Installation
 
-Cette partie s'adresse aux personnes qui souhaitent installer leur propre instance.
+L'application est distribuée sous forme de fichier ZIP. Aucun clonage du dépôt avec Git n'est nécessaire pour récupérer l'archive.
 
-Quelques notions de base sur Cloudflare sont utiles, mais les étapes ci-dessous permettent de suivre la configuration sans partir de zéro.
+### Prérequis
 
-### 1. Préparer le projet
+Avant de commencer, vous aurez besoin de :
 
-Récupérez le fichier `_worker.js` fourni avec le projet.
+- Un compte Cloudflare.
+- Un projet Cloudflare Pages configuré pour le mode de déploiement compatible avec le code fourni.
+- Un espace de noms Cloudflare Workers KV.
+- Le fichier ZIP du projet.
 
-Il contient le code de l'application. Conservez une copie du fichier original afin de pouvoir revenir à la version initiale en cas de problème.
+Un nom de domaine personnalisé est recommandé pour utiliser des liens propres, mais vous pouvez commencer par tester le déploiement sur l'adresse Cloudflare attribuée à votre projet.
 
-### 2. Créer le projet Cloudflare Pages
+### 1. Télécharger l'archive
 
-Dans votre tableau de bord Cloudflare :
+Récupérez le fichier ZIP mis à disposition dans la section de téléchargement du dépôt.
+
+Décompressez-le sur votre ordinateur.
+
+Vous devriez retrouver le fichier `_worker.js` parmi les fichiers fournis.
+
+**Conservez une copie de l'archive originale.** Elle vous sera utile si vous souhaitez repartir d'une version propre.
+
+### 2. Préparer Cloudflare Pages
+
+Dans le tableau de bord Cloudflare :
 
 1. Ouvrez **Workers & Pages**.
-2. Créez un projet Pages ou ouvrez celui que vous souhaitez utiliser.
-3. Configurez le déploiement correspondant au format du projet fourni.
-4. Déployez le code selon la méthode compatible avec votre version de Cloudflare Pages.
+2. Créez un projet ou sélectionnez un projet existant.
+3. Configurez le mode de déploiement correspondant à la structure de l'archive.
+4. Préparez les fichiers nécessaires au déploiement.
 
-Les intitulés exacts des menus peuvent varier selon l'interface Cloudflare et la méthode de déploiement utilisée.
+La procédure exacte dépend de la structure du ZIP et du mode de déploiement utilisé. Vérifiez que le projet est compatible avec le fichier `_worker.js` fourni avant de publier.
 
-### 3. Créer l'espace de stockage KV
+### 3. Configurer Workers KV
 
-L'application utilise Cloudflare Workers KV pour conserver ses données.
+L'application utilise Workers KV pour stocker ses données.
 
-1. Ouvrez la section **Storage & Databases** de Cloudflare.
+1. Ouvrez la section de stockage de Cloudflare.
 2. Créez un espace de noms KV.
-3. Donnez-lui un nom explicite, par exemple `links-manager`.
-4. Ouvrez les paramètres du projet Pages.
-5. Ajoutez cet espace de noms comme liaison KV.
+3. Ouvrez les paramètres de votre projet.
+4. Ajoutez une liaison KV pointant vers cet espace de noms.
+5. Utilisez le nom de liaison attendu par le code : `LINKS`.
 
-**Nom de la liaison attendu par l'application :**
+Attention : le nom de l'espace de noms et le nom de la liaison ne sont pas nécessairement identiques.
 
-`LINKS`
+### 4. Configurer les secrets
 
-Attention : le nom de l'espace de noms et celui de la liaison sont deux choses différentes. C'est le nom de la liaison qui doit correspondre à celui attendu par le code.
+Ajoutez les variables et secrets attendus par votre version de l'application.
 
-### 4. Configurer les variables d'environnement
-
-Dans les paramètres de votre projet, ajoutez les secrets nécessaires à l'application.
-
-| Variable | Rôle |
+| Variable | Utilité |
 |---|---|
-| `ADMIN_PASSWORD` | Mot de passe administrateur initial, si prévu par la version utilisée |
-| `SESSION_SECRET` | Secret utilisé pour les mécanismes de session, selon l'implémentation |
+| `ADMIN_PASSWORD` | Mot de passe administrateur initial, si utilisé par le code |
+| `SESSION_SECRET` | Secret lié à la gestion des sessions, selon l'implémentation |
+| `ADMIN_USER` | Nom d'utilisateur administrateur, si cette variable est prise en charge |
 
-Si votre version utilise également une variable `ADMIN_USER`, configurez-la conformément au code. Une valeur par défaut peut exister, mais vérifiez-la avant la première mise en service.
+Les noms et les usages doivent correspondre exactement à ceux définis dans le fichier fourni.
 
-**Important :** utilisez un mot de passe robuste et un secret suffisamment long, aléatoire et unique. Ne publiez jamais leurs valeurs dans votre dépôt GitHub.
-
-Les noms des variables doivent correspondre exactement à ceux utilisés dans le fichier `_worker.js`.
+Utilisez des valeurs robustes et ne publiez jamais vos secrets dans votre dépôt GitHub.
 
 ### 5. Configurer R2 (facultatif)
 
-Si vous souhaitez utiliser les fonctions de stockage de fichiers :
+Si vous souhaitez utiliser le stockage de fichiers :
 
 1. Créez un compartiment Cloudflare R2.
-2. Ajoutez-le au projet en tant que liaison.
-3. Utilisez le nom de liaison attendu par le code, par exemple `CONTENT_FILES` si votre version le prévoit.
+2. Ajoutez la liaison correspondante à votre projet.
+3. Utilisez le nom attendu par le code, par exemple `CONTENT_FILES` si votre version le prévoit.
 
-Cette étape peut être ignorée si vous n'avez pas besoin du stockage de fichiers.
+Cette étape est facultative si vous n'avez pas besoin de cette fonctionnalité.
 
-### 6. Déployer et vérifier
+### 6. Déployer et tester
 
-Une fois la configuration terminée :
+Une fois les paramètres configurés :
 
-1. Enregistrez vos paramètres.
-2. Redéployez l'application.
-3. Ouvrez l'adresse de votre site.
+1. Enregistrez vos modifications.
+2. Déployez ou redéployez le projet.
+3. Ouvrez l'application dans votre navigateur.
 4. Connectez-vous avec les identifiants configurés.
-5. Créez un premier lien de test.
+5. Créez un lien de test.
 6. Vérifiez que la redirection fonctionne.
 
-Si quelque chose ne fonctionne pas, consultez la section de dépannage avant de modifier le code.
+Si une erreur apparaît, consultez les journaux d'exécution Cloudflare et vérifiez les liaisons et les variables de configuration.
 
 ---
 
 ## Comprendre les limites de Workers KV
 
-Cloudflare Workers KV est un stockage distribué. Il est pratique pour ce type d'application, mais il est soumis à des quotas.
+Workers KV est pratique pour stocker les données de l'application, mais il est soumis à des quotas.
 
-Les limites exactes dépendent de l'offre et des conditions en vigueur. À titre indicatif, l'offre gratuite a notamment été associée aux quotas journaliers suivants :
+À titre indicatif, les limites historiquement associées à l'offre gratuite comprennent :
 
-| Type d'opération | Quota journalier indicatif |
+| Opération | Quota journalier indicatif |
 |---|---:|
 | Lectures | 100 000 |
 | Écritures | 1 000 |
@@ -189,68 +235,47 @@ Les limites exactes dépendent de l'offre et des conditions en vigueur. À titre
 | Opérations de liste | 1 000 |
 | Stockage | 1 Go |
 
-Ces chiffres sont donnés à titre indicatif et **ne constituent pas une garantie des quotas applicables à votre compte en octobre 2026**. Vérifiez les valeurs actuelles dans la documentation officielle avant de dimensionner votre installation.
+Ces valeurs peuvent évoluer. Consultez les limites applicables à votre compte dans la documentation officielle :
 
 - [Tarification de Workers KV](https://developers.cloudflare.com/kv/platform/pricing/)
 - [Limites de Workers KV](https://developers.cloudflare.com/kv/platform/limits/)
 
-### Qu'est-ce que cela signifie concrètement ?
-
-Les opérations de lecture servent notamment à récupérer des données. Les écritures et suppressions sont utilisées lorsque des données sont créées, modifiées ou supprimées. Les opérations de liste permettent de parcourir les clés stockées.
-
-Une application peut donc fonctionner parfaitement avec un usage modéré, puis rencontrer des limites si le volume d'activité augmente fortement.
-
-Il faut également tenir compte du fait qu'une seule action dans l'interface peut déclencher plusieurs opérations KV.
-
-**Notre conseil :** surveillez l'utilisation de votre compte Cloudflare, surtout si vous ouvrez l'accès à plusieurs utilisateurs ou si vos liens reçoivent beaucoup de trafic.
+Une seule action dans l'interface peut déclencher plusieurs opérations de stockage. Si vous prévoyez un usage important, surveillez donc votre consommation et les éventuelles erreurs de quota.
 
 ---
 
 ## Sécurité
 
-Comme pour toute application accessible depuis Internet, quelques précautions sont indispensables.
+Quelques précautions permettent de limiter les problèmes :
 
-- Choisissez des identifiants robustes.
-- Ne partagez jamais vos secrets Cloudflare.
-- Limitez les accès au tableau de bord Cloudflare aux personnes de confiance.
-- Utilisez HTTPS sur votre domaine.
-- Vérifiez régulièrement les paramètres et les autorisations de votre projet.
-- Testez les changements avant de les mettre en production.
+- Utilisez des mots de passe robustes.
+- Gardez vos secrets Cloudflare confidentiels.
+- Limitez l'accès à votre tableau de bord Cloudflare.
+- Activez HTTPS sur votre domaine.
 - Conservez une copie du code et des données importantes.
+- Vérifiez les permissions avant de donner accès à d'autres utilisateurs.
 
-La présence d'une option de protection par mot de passe ne remplace pas une vérification complète de la sécurité de l'application. Les mécanismes d'authentification, de session et de contrôle des permissions dépendent de l'implémentation exacte du code déployé.
+La présence d'une fonction de protection par mot de passe ne suffit pas, à elle seule, à garantir la sécurité de l'ensemble de l'application.
 
 ---
 
 ## Dépannage
 
-### L'application ne démarre pas
+| Problème | Vérifications à effectuer |
+|---|---|
+| L'application ne démarre pas | Consultez les journaux d'exécution et vérifiez le déploiement. |
+| Impossible d'enregistrer un lien | Vérifiez la liaison KV `LINKS` et les quotas disponibles. |
+| La redirection ne fonctionne pas | Vérifiez le chemin, la destination et les éventuelles dates de disponibilité. |
+| La connexion échoue | Vérifiez les identifiants et les variables attendues par le code. |
+| Une erreur serveur apparaît | Consultez les journaux Cloudflare et recherchez la cause précise. |
 
-Vérifiez que le dernier déploiement s'est terminé correctement et consultez les journaux d'exécution Cloudflare.
-
-### Impossible d'enregistrer un lien
-
-Vérifiez que la liaison KV est présente et qu'elle porte exactement le nom attendu par le code.
-
-Si le quota d'écritures est atteint, certaines opérations peuvent également échouer jusqu'au rétablissement de la capacité disponible.
-
-### La redirection ne fonctionne pas
-
-Vérifiez le chemin du lien, la destination enregistrée, les éventuelles restrictions de disponibilité et la configuration du domaine.
-
-### La connexion échoue
-
-Vérifiez les variables de configuration, les identifiants utilisés et les éventuels changements récents apportés au déploiement.
-
-### Une erreur serveur apparaît
-
-Consultez les journaux Cloudflare pour identifier l'erreur précise. Évitez de publier des journaux contenant des secrets, des cookies de session ou des informations personnelles.
+Ne publiez jamais de secrets, de cookies de session ou d'informations personnelles dans un rapport de bug.
 
 ---
 
-## Documentation officielle
+## Documentation
 
-Pour aller plus loin, les ressources suivantes sont utiles :
+Pour approfondir la configuration, consultez la documentation officielle :
 
 - [Cloudflare Pages](https://developers.cloudflare.com/pages/)
 - [Cloudflare Workers](https://developers.cloudflare.com/workers/)
@@ -259,26 +284,17 @@ Pour aller plus loin, les ressources suivantes sont utiles :
 
 ---
 
-## Contribuer
+## Signaler un problème
 
-Les suggestions, les signalements de bugs et les améliorations sont les bienvenus.
+Si vous rencontrez un bug, indiquez si possible :
 
-Avant de proposer une modification, vérifiez qu'elle ne compromet pas les redirections existantes, les données stockées ou les mécanismes d'authentification.
-
-Pour signaler un problème, indiquez autant que possible :
-
-- Le comportement attendu.
-- Le comportement observé.
+- La version de l'archive utilisée.
 - Les étapes permettant de reproduire le problème.
-- Le message d'erreur obtenu, en retirant toute information sensible.
+- Le résultat attendu.
+- Le résultat obtenu.
+- Le message d'erreur, en retirant toute information sensible.
 
----
-
-## Licence
-
-Ajoutez ici la licence choisie pour le projet si vous souhaitez autoriser sa réutilisation.
-
-En l'absence de licence explicite, ne partez pas du principe que le code peut être librement copié, modifié ou redistribué.
+Les retours permettent de rendre le projet plus fiable et plus simple à utiliser.
 
 ---
 
@@ -286,6 +302,6 @@ En l'absence de licence explicite, ne partez pas du principe que le code peut ê
 
 **Cloudflare Links Manager**
 
-*Un seul endroit pour gérer vos liens, avec votre propre infrastructure.*
+*Vos redirections, votre domaine, votre contrôle.*
 
 </div>
