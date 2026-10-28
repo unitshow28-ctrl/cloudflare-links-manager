@@ -1,16 +1,16 @@
-<div align="center">
+# ☁️ Cloudflare Links Manager by Bertrand
 
-# Cloudflare Links Manager by Bertrand
+<div align="center">
 
 ### Tous vos liens. Un seul endroit.
 
 **Créez, gérez et analysez vos redirections depuis votre propre espace d'administration.**
 
-Un projet pensé pour simplifier la gestion de vos liens, avec une interface centralisée et les services Cloudflare.
+Un projet pensé pour simplifier la gestion de vos liens grâce à une interface centralisée et aux services Cloudflare.
 
 <br>
 
-[![Cloudflare](https://img.shields.io/badge/Powered_by-Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://www.cloudflare.com/)
+[![Cloudflare](https://img.shields.io/badge/Powered_by-Cloudflare-F38020?style=for-the-badge\&logo=cloudflare\&logoColor=white)](https://www.cloudflare.com/)
 ![Workers KV](https://img.shields.io/badge/Storage-Workers_KV-2563EB?style=for-the-badge)
 ![Interface française](https://img.shields.io/badge/Interface-Fran%C3%A7aise-16A34A?style=for-the-badge)
 
@@ -22,7 +22,28 @@ Un projet pensé pour simplifier la gestion de vos liens, avec une interface cen
 
 ---
 
-## Le projet
+## 📌 Sommaire
+
+* [Le projet](#-le-projet)
+* [Aperçu de l'application](#-aperçu-de-lapplication)
+
+  * [Le tableau de bord](#le-tableau-de-bord)
+  * [La gestion des liens](#la-gestion-des-liens)
+  * [Le centre d'analyse](#le-centre-danalyse)
+  * [Les utilisateurs et les groupes de droits](#les-utilisateurs-et-les-groupes-de-droits)
+  * [Une interface personnalisable](#une-interface-personnalisable)
+* [Ce que vous pouvez faire](#-ce-que-vous-pouvez-faire)
+* [Comment ça fonctionne ?](#-comment-ça-fonctionne-)
+* [Installation](#-installation)
+* [Est-ce vraiment gratuit ?](#-est-ce-vraiment-gratuit-)
+* [Quelques conseils de sécurité](#-quelques-conseils-de-sécurité)
+* [Un problème pendant l'installation ?](#-un-problème-pendant-linstallation-)
+* [Documentation utile](#-documentation-utile)
+* [Vous avez trouvé un problème ?](#-vous-avez-trouvé-un-problème-)
+
+---
+
+## 🚀 Le projet
 
 Vous avez des dizaines de liens à gérer ? Des redirections à modifier ? Des utilisateurs à administrer ?
 
@@ -30,7 +51,7 @@ Vous avez des dizaines de liens à gérer ? Des redirections à modifier ? Des u
 
 L'application vous permet de créer des liens personnalisés, de gérer leurs destinations, de consulter les statistiques disponibles et d'organiser les accès à votre espace d'administration.
 
-L'objectif est simple : avoir un outil pratique, personnalisable et hébergé sur votre propre infrastructure Cloudflare.
+L'objectif est simple : vous proposer un outil pratique, personnalisable et hébergé sur votre propre infrastructure Cloudflare.
 
 ### À quoi ça sert ?
 
@@ -38,14 +59,14 @@ Imaginez que vous souhaitiez partager l'accès à plusieurs services de votre in
 
 Au lieu de transmettre des adresses parfois longues ou difficiles à retenir, vous pouvez créer des liens personnalisés :
 
-| Votre lien | Destination |
-|---|---|
-| `liens.mondomaine.fr/nextcloud` | Votre espace Nextcloud |
-| `liens.mondomaine.fr/docs` | Votre documentation |
-| `liens.mondomaine.fr/contact` | Votre page de contact |
-| `liens.mondomaine.fr/projet` | Votre site ou application |
+| Votre lien                      | Destination               |
+| ------------------------------- | ------------------------- |
+| `liens.mondomaine.fr/nextcloud` | Votre espace Nextcloud    |
+| `liens.mondomaine.fr/docs`      | Votre documentation       |
+| `liens.mondomaine.fr/contact`   | Votre page de contact     |
+| `liens.mondomaine.fr/projet`    | Votre site ou application |
 
-Et si une adresse change ?
+**Et si une adresse change ?**
 
 Vous modifiez simplement la destination dans l'administration. Le lien partagé peut rester le même.
 
@@ -53,9 +74,9 @@ C'est tout l'intérêt d'un gestionnaire de redirections : **vous gardez le cont
 
 ---
 
-## Aperçu de l'application
+## 🖥️ Aperçu de l'application
 
-Voici un aperçu des différentes parties de l'interface.
+Découvrez les différentes parties de l'interface et les possibilités offertes par Cloudflare Links Manager.
 
 ### Le tableau de bord
 
@@ -149,22 +170,22 @@ Adaptez l'application à vos préférences et à votre environnement.
 
 ---
 
-## Ce que vous pouvez faire
+## ✨ Ce que vous pouvez faire
 
-### Gérer vos liens
+### 🔗 Gérer vos liens
 
 Tout se passe depuis l'interface d'administration.
 
-- Créer des liens avec des adresses personnalisées.
-- Modifier ou supprimer une redirection.
-- Rediriger vers des destinations HTTP ou HTTPS.
-- Définir des dates de début et de fin de disponibilité.
-- Protéger certains liens par mot de passe.
-- Créer des pages contenant un court texte.
+* Créer des liens avec des adresses personnalisées.
+* Modifier ou supprimer une redirection.
+* Rediriger vers des destinations HTTP ou HTTPS.
+* Définir des dates de début et de fin de disponibilité.
+* Protéger certains liens par mot de passe.
+* Créer des pages contenant un court texte.
 
 Plus besoin de modifier manuellement le code à chaque changement de destination.
 
-### Analyser l'activité
+### 📊 Analyser l'activité
 
 Le centre d'analyse vous permet de consulter les statistiques disponibles dans votre installation.
 
@@ -172,48 +193,48 @@ Vous disposez ainsi d'un espace dédié pour observer l'activité de vos liens e
 
 Les indicateurs présentés dépendent des fonctionnalités effectivement disponibles dans la version déployée.
 
-### Organiser les utilisateurs
+### 👥 Organiser les utilisateurs
 
 Lorsque plusieurs personnes utilisent l'application, il devient important de bien organiser les accès.
 
 Les fonctions disponibles comprennent notamment :
 
-- La gestion des comptes utilisateurs.
-- L'organisation en groupes de droits.
-- La gestion des permissions selon les rôles disponibles.
-- L'activation et la désactivation des comptes.
-- La gestion des profils et des mots de passe.
-- La gestion éventuelle de l'expiration des comptes.
+* La gestion des comptes utilisateurs.
+* L'organisation en groupes de droits.
+* La gestion des permissions selon les rôles disponibles.
+* L'activation et la désactivation des comptes.
+* La gestion des profils et des mots de passe.
+* La gestion éventuelle de l'expiration des comptes.
 
 L'idée est de pouvoir adapter les accès aux responsabilités de chacun, plutôt que de donner systématiquement les mêmes droits à tout le monde.
 
-### Personnaliser l'application
+### 🎨 Personnaliser l'application
 
 L'interface peut être adaptée à vos préférences grâce aux options de personnalisation disponibles.
 
 Vous pouvez notamment retrouver des fonctions liées :
 
-- Au nom du site.
-- Au logo et aux textes.
-- À l'apparence générale.
-- Aux thèmes clair et sombre.
+* Au nom du site.
+* Au logo et aux textes.
+* À l'apparence générale.
+* Aux thèmes clair et sombre.
 
-### Stocker des fichiers avec R2
+### 📁 Stocker des fichiers avec R2
 
 Une configuration compatible avec Cloudflare R2 peut également permettre de stocker des fichiers, notamment des PDF, lorsque cette fonctionnalité est activée et correctement configurée.
 
 ---
 
-## Comment ça fonctionne ?
+## ⚙️ Comment ça fonctionne ?
 
 Le projet s'appuie sur plusieurs services Cloudflare, chacun ayant un rôle précis.
 
-| Service | Son rôle |
-|---|---|
-| **Cloudflare Pages** | Hébergement de l'application |
-| **Cloudflare Workers** | Exécution du code côté serveur |
+| Service                   | Son rôle                              |
+| ------------------------- | ------------------------------------- |
+| **Cloudflare Pages**      | Hébergement de l'application          |
+| **Cloudflare Workers**    | Exécution du code côté serveur        |
 | **Cloudflare Workers KV** | Stockage des données de l'application |
-| **Cloudflare R2** | Stockage de fichiers facultatif |
+| **Cloudflare R2**         | Stockage de fichiers facultatif       |
 
 Cette architecture permet de faire fonctionner l'application sans administrer un serveur traditionnel.
 
@@ -221,7 +242,7 @@ Les services utilisés restent soumis aux quotas, aux conditions et aux éventue
 
 ---
 
-## Installation
+## 📦 Installation
 
 L'application est distribuée sous la forme d'une **archive ZIP téléchargeable depuis la release GitHub**.
 
@@ -231,10 +252,10 @@ Vous n'avez donc pas besoin de cloner le dépôt pour récupérer les fichiers.
 
 Vous aurez besoin de :
 
-- Un compte Cloudflare.
-- L'archive ZIP du projet.
-- Un projet configuré pour le mode de déploiement compatible avec le code fourni.
-- Un espace de noms Cloudflare Workers KV.
+* Un compte Cloudflare.
+* L'archive ZIP du projet.
+* Un projet configuré pour le mode de déploiement compatible avec le code fourni.
+* Un espace de noms Cloudflare Workers KV.
 
 Un domaine personnalisé est recommandé pour obtenir des liens faciles à retenir. Vous pouvez néanmoins commencer par tester votre installation sur l'adresse fournie par Cloudflare.
 
@@ -251,7 +272,7 @@ Dans votre tableau de bord Cloudflare :
 1. Ouvrez **Workers & Pages**.
 2. Créez un projet ou sélectionnez un projet existant.
 3. Configurez le mode de déploiement correspondant à la structure des fichiers fournis.
-4. Ajoutez le fichier nécessaire au déploiement (glissez simplement le fichier zip après avoir choisis votre domaine)
+4. Ajoutez le fichier nécessaire au déploiement (glissez simplement le fichier ZIP après avoir choisi votre domaine).
 
 ### Étape 3 — Configurer Workers KV
 
@@ -263,21 +284,22 @@ L'application utilise Workers KV pour stocker ses données.
 4. Ajoutez une liaison KV vers cet espace de noms.
 5. Utilisez le nom de liaison attendu par le code, notamment `LINKS` si votre version le prévoit.
 
-**Attention :** le nom de l'espace de noms et celui de la liaison sont deux choses différentes. C'est le nom de la liaison qui doit correspondre à celui attendu par le code.
+> **Attention :** le nom de l'espace de noms et celui de la liaison sont deux choses différentes. C'est le nom de la liaison qui doit correspondre à celui attendu par le code.
 
 ### Étape 4 — Configurer les secrets
 
 Ajoutez les variables et secrets attendus par votre version de l'application.
 
-| Variable | Utilité |
-|---|---|
-| `ADMIN_PASSWORD` | Mot de passe administrateur initial, si utilisé par le code |
-| `SESSION_SECRET` | Secret lié à la gestion des sessions, selon l'implémentation |
-| `ADMIN_USER` | Nom d'utilisateur administrateur, si cette variable est prise en charge |
+| Variable         | Utilité                                                                 |
+| ---------------- | ----------------------------------------------------------------------- |
+| `ADMIN_PASSWORD` | Mot de passe administrateur initial, si utilisé par le code             |
+| `SESSION_SECRET` | Secret lié à la gestion des sessions, selon l'implémentation            |
+| `ADMIN_USER`     | Nom d'utilisateur administrateur, si cette variable est prise en charge |
 
 Les noms et les usages doivent correspondre exactement à ceux définis dans `_worker.js`.
 
 Choisissez des valeurs robustes et uniques.
+
 ### Étape 5 — Configurer R2 (facultatif)
 
 Vous souhaitez utiliser le stockage de fichiers ?
@@ -303,7 +325,7 @@ En cas de problème, consultez les journaux d'exécution Cloudflare et vérifiez
 
 ---
 
-## Est-ce vraiment gratuit ?
+## 💰 Est-ce vraiment gratuit ?
 
 **Oui, il est possible d'utiliser le projet avec les offres gratuites de Cloudflare, sous certaines conditions.**
 
@@ -313,89 +335,89 @@ Cloudflare propose des offres gratuites pour plusieurs de ses services, notammen
 
 À titre indicatif, les quotas historiquement associés à l'offre gratuite de Workers KV comprennent :
 
-| Opération | Quota journalier indicatif |
-|---|---:|
-| Lectures | 100 000 |
-| Écritures | 1 000 |
-| Suppressions | 1 000 |
-| Opérations de liste | 1 000 |
-| Stockage | 1 Go |
+| Opération           | Quota journalier indicatif |
+| ------------------- | -------------------------: |
+| Lectures            |                    100 000 |
+| Écritures           |                      1 000 |
+| Suppressions        |                      1 000 |
+| Opérations de liste |                      1 000 |
+| Stockage            |                       1 Go |
 
 Ces chiffres sont indicatifs et ne constituent pas une garantie des limites actuellement applicables à votre compte.
 
 Pour consulter les conditions à jour :
 
-- [Tarification de Workers KV](https://developers.cloudflare.com/kv/platform/pricing/)
-- [Limites de Workers KV](https://developers.cloudflare.com/kv/platform/limits/)
-- [Tarification de Workers](https://developers.cloudflare.com/workers/platform/pricing/)
-- [Documentation Cloudflare Pages](https://developers.cloudflare.com/pages/)
+* [Tarification de Workers KV](https://developers.cloudflare.com/kv/platform/pricing/)
+* [Limites de Workers KV](https://developers.cloudflare.com/kv/platform/limits/)
+* [Tarification de Workers](https://developers.cloudflare.com/workers/platform/pricing/)
+* [Documentation Cloudflare Pages](https://developers.cloudflare.com/pages/)
 
 ### Ce qu'il faut retenir
 
-- Vous pouvez commencer sans payer d'hébergement si votre configuration respecte les conditions des offres gratuites.
-- Workers KV est soumis à des quotas journaliers.
-- Une seule action dans l'interface peut déclencher plusieurs opérations de stockage.
-- Un usage important peut nécessiter une offre payante.
-- L'achat d'un nom de domaine peut entraîner des frais supplémentaires.
-- Les autres services utilisés, notamment R2, ont leurs propres conditions tarifaires.
+* Vous pouvez commencer sans payer d'hébergement si votre configuration respecte les conditions des offres gratuites.
+* Workers KV est soumis à des quotas journaliers.
+* Une seule action dans l'interface peut déclencher plusieurs opérations de stockage.
+* Un usage important peut nécessiter une offre payante.
+* L'achat d'un nom de domaine peut entraîner des frais supplémentaires.
+* Les autres services utilisés, notamment R2, ont leurs propres conditions tarifaires.
 
 **En clair :** vous pouvez mettre en place une installation gratuite dans une configuration adaptée, mais le coût dépend des services choisis et de votre utilisation.
 
 ---
 
-## Quelques conseils de sécurité
+## 🔐 Quelques conseils de sécurité
 
 Avant de mettre votre installation à disposition d'autres personnes, prenez le temps de vérifier les points suivants :
 
-- Utilisez des mots de passe robustes.
-- Gardez vos secrets Cloudflare confidentiels.
-- Limitez l'accès au tableau de bord Cloudflare aux personnes de confiance.
-- Utilisez HTTPS sur votre domaine.
-- Conservez une copie du code et des données importantes.
-- Vérifiez les permissions avant de donner accès à d'autres utilisateurs.
+* Utilisez des mots de passe robustes.
+* Gardez vos secrets Cloudflare confidentiels.
+* Limitez l'accès au tableau de bord Cloudflare aux personnes de confiance.
+* Utilisez HTTPS sur votre domaine.
+* Conservez une copie du code et des données importantes.
+* Vérifiez les permissions avant de donner accès à d'autres utilisateurs.
 
 La présence d'une protection par mot de passe ne garantit pas, à elle seule, la sécurité de toute l'application. L'authentification, la gestion des sessions et les permissions dépendent de l'implémentation du code déployé.
 
 ---
 
-## Un problème pendant l'installation ?
+## 🛠️ Un problème pendant l'installation ?
 
 Voici quelques vérifications utiles avant de chercher plus loin.
 
-| Problème rencontré | Que vérifier ? |
-|---|---|
-| L'application ne démarre pas | Le déploiement et les journaux d'exécution Cloudflare. |
-| Impossible d'enregistrer un lien | La liaison KV et les quotas disponibles. |
-| Une redirection ne fonctionne pas | Le chemin, la destination et les dates de disponibilité. |
-| La connexion échoue | Les identifiants et les variables attendues par le code. |
-| Une erreur serveur apparaît | Les journaux Cloudflare pour identifier la cause précise. |
+| Problème rencontré                | Que vérifier ?                                            |
+| --------------------------------- | --------------------------------------------------------- |
+| L'application ne démarre pas      | Le déploiement et les journaux d'exécution Cloudflare.    |
+| Impossible d'enregistrer un lien  | La liaison KV et les quotas disponibles.                  |
+| Une redirection ne fonctionne pas | Le chemin, la destination et les dates de disponibilité.  |
+| La connexion échoue               | Les identifiants et les variables attendues par le code.  |
+| Une erreur serveur apparaît       | Les journaux Cloudflare pour identifier la cause précise. |
 
 Si vous demandez de l'aide, pensez à préciser les étapes qui ont provoqué le problème et à retirer toute information sensible des journaux partagés.
 
 ---
 
-## Documentation utile
+## 📚 Documentation utile
 
 Pour aller plus loin dans la configuration de votre installation, voici les ressources officielles :
 
-- [Cloudflare Pages](https://developers.cloudflare.com/pages/)
-- [Cloudflare Workers](https://developers.cloudflare.com/workers/)
-- [Cloudflare Workers KV](https://developers.cloudflare.com/kv/)
-- [Cloudflare R2](https://developers.cloudflare.com/r2/)
+* [Cloudflare Pages](https://developers.cloudflare.com/pages/)
+* [Cloudflare Workers](https://developers.cloudflare.com/workers/)
+* [Cloudflare Workers KV](https://developers.cloudflare.com/kv/)
+* [Cloudflare R2](https://developers.cloudflare.com/r2/)
 
 ---
 
-## Vous avez trouvé un problème ?
+## 🐛 Vous avez trouvé un problème ?
 
 Les retours sont utiles pour améliorer le projet.
 
 Si vous rencontrez un bug, indiquez si possible :
 
-- La version de l'archive utilisée.
-- Les étapes pour reproduire le problème.
-- Le résultat attendu.
-- Le résultat obtenu.
-- Le message d'erreur, sans informations sensibles.
+* La version de l'archive utilisée.
+* Les étapes pour reproduire le problème.
+* Le résultat attendu.
+* Le résultat obtenu.
+* Le message d'erreur, sans informations sensibles.
 
 Un signalement clair permet de comprendre plus facilement ce qui se passe et de trouver une solution.
 
@@ -403,10 +425,12 @@ Un signalement clair permet de comprendre plus facilement ce qui se passe et de 
 
 <div align="center">
 
-### Cloudflare Links Manager
+### ☁️ Cloudflare Links Manager
 
 **Vos liens, votre domaine, votre contrôle.**
 
 Merci de prendre le temps de découvrir le projet.
+
+*Développé par Bertrand.*
 
 </div>
